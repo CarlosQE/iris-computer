@@ -1,44 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Colores de marca Iris Computer */
   --color-brand-navy:    #1B2A8A;
   --color-brand-red:     #E8181E;
   --color-brand-magenta: #C8187A;
-  --color-brand-dark:    #0D1117;
-  --color-brand-darker:  #161B22;
-  --color-brand-card:    #1C2128;
+  --color-brand-dark:    #05070F;
+  --color-brand-darker:  #080C18;
+  --color-brand-card:    #0D1225;
+  --color-brand-border:  #1B2A8A40;
 
-  /* Tipografía */
-  --font-sans: "Inter", system-ui, sans-serif;
-
-  /* Sombras glow */
-  --shadow-glow-navy:    0 0 20px rgba(27, 42, 138, 0.4);
-  --shadow-glow-red:     0 0 20px rgba(232, 24, 30, 0.4);
-  --shadow-glow-magenta: 0 0 20px rgba(200, 24, 122, 0.4);
+  --font-display: "Rajdhani", sans-serif;
+  --font-sans: "Exo 2", sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #0D1117;
+  background-color: #05070F;
   color: #ffffff;
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-/* Scrollbar personalizado estilo gamer */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0D1117; }
-::-webkit-scrollbar-thumb { background: #1B2A8A; border-radius: 3px; }
+/* Scanline effect sutil */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(27, 42, 138, 0.015) 2px,
+    rgba(27, 42, 138, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #05070F; }
+::-webkit-scrollbar-thumb { background: #E8181E; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #C8187A; }
 
-/* Selección de texto */
-::selection { background: #1B2A8A; color: #ffffff; }
+::selection { background: #E8181E; color: #ffffff; }
+
+/* Cyberpunk clip paths */
+.clip-corner-tl {
+  clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 12px);
+}
+.clip-corner-br {
+  clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%);
+}
+.clip-corner-both {
+  clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+}
+
+/* Glow animations */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px #E8181E60, 0 0 20px #E8181E20; }
+  50% { box-shadow: 0 0 16px #E8181E90, 0 0 40px #E8181E40; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glow-red { animation: glow-pulse 2s ease-in-out infinite; }
+.flicker { animation: flicker 8s infinite; }
+
+/* Cyberpunk card */
+.cyber-card {
+  background: linear-gradient(135deg, #0D1225 0%, #080C18 100%);
+  border: 1px solid #1B2A8A40;
+  position: relative;
+}
+.cyber-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #E8181E08 0%, transparent 50%);
+  pointer-events: none;
+}
+.cyber-card:hover {
+  border-color: #E8181E80;
+  box-shadow: 0 0 20px #E8181E20, inset 0 0 20px #E8181E05;
+}
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(27, 42, 138, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 42, 138, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Neon text */
+.neon-red {
+  color: #E8181E;
+  text-shadow: 0 0 10px #E8181E80, 0 0 30px #E8181E40;
+}
+.neon-blue {
+  color: #4466FF;
+  text-shadow: 0 0 10px #4466FF80, 0 0 30px #4466FF40;
+}
