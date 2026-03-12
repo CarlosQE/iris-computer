@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colores de marca Iris Computer */
+  --color-brand-navy:    #1B2A8A;
+  --color-brand-red:     #E8181E;
+  --color-brand-magenta: #C8187A;
+  --color-brand-dark:    #0D1117;
+  --color-brand-darker:  #161B22;
+  --color-brand-card:    #1C2128;
+
+  /* Tipografía */
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Sombras glow */
+  --shadow-glow-navy:    0 0 20px rgba(27, 42, 138, 0.4);
+  --shadow-glow-red:     0 0 20px rgba(232, 24, 30, 0.4);
+  --shadow-glow-magenta: 0 0 20px rgba(200, 24, 122, 0.4);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0D1117;
+  color: #ffffff;
+  font-family: var(--font-sans);
 }
+
+/* Scrollbar personalizado estilo gamer */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D1117; }
+::-webkit-scrollbar-thumb { background: #1B2A8A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C8187A; }
+
+/* Selección de texto */
+::selection { background: #1B2A8A; color: #ffffff; }
